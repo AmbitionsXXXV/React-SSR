@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-const homeSlcie = createSlice({
+const homeSlice = createSlice({
   name: "home", //
   initialState: {
     counter: 1000,
@@ -13,9 +13,9 @@ const homeSlcie = createSlice({
       state.counter += payload;
     },
   },
-  extraReducers: (buidler) => {
+  extraReducers: (builder) => {
     // type: fetchHomeData/状态
-    buidler.addCase(fetchHomeData.fulfilled, (state, { payload, type }) => {
+    builder.addCase(fetchHomeData.fulfilled, (state, { payload, type }) => {
       console.log("type=>", type);
       console.log("payload=>", payload);
       state.homeInfo = payload;
@@ -27,12 +27,12 @@ const homeSlcie = createSlice({
 export const fetchHomeData = createAsyncThunk(
   "fetchHomeData",
   async (payload, { dispatch, getState }) => {
-    const res = await axios.get("http://codercba.com:9060/juanpi/api/homeInfo");
+    const res = await axios.get("http://xxx.com");
     return res.data;
   }
 );
 
 // 同步的 action
-export const { increment } = homeSlcie.actions;
+export const { increment } = homeSlice.actions;
 // home 切片生成的 reducer
-export default homeSlcie.reducer;
+export default homeSlice.reducer;
